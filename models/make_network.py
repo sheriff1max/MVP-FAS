@@ -7,8 +7,8 @@ def get_network(cfg, device, net_name='MVP_FAS'):
     net = torch.nn.DataParallel(net).to(device)
     return net
 
-def set_pretrained_setting(net,optimizer,weight_path):
-    checkpoint_dict = torch.load(weight_path)
+def set_pretrained_setting(net, optimizer, weight_path, device):
+    checkpoint_dict = torch.load(weight_path, map_location=device)
     checkpoint = checkpoint_dict['state_dict']
     optim_checkpoint = checkpoint_dict['optimizer']
     last_epoch = checkpoint_dict['epoch']-1
