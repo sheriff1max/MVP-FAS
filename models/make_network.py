@@ -1,10 +1,10 @@
 import torch
 
 from models.MVP_FAS import mspt
-def get_network(cfg,net_name='MVP_FAS'):
+def get_network(cfg, device, net_name='MVP_FAS'):
     if net_name == 'MVP_FAS':
         net = mspt(cfg)
-    net = torch.nn.DataParallel(net).cuda()
+    net = torch.nn.DataParallel(net).to(device)
     return net
 
 def set_pretrained_setting(net,optimizer,weight_path):
