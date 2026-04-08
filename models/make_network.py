@@ -3,7 +3,7 @@ import torch
 from models.MVP_FAS import mspt
 def get_network(cfg, device, net_name='MVP_FAS'):
     if net_name == 'MVP_FAS':
-        net = mspt(cfg)
+        net = mspt(cfg, device=device)
     net = torch.nn.DataParallel(net).to(device)
     return net
 
